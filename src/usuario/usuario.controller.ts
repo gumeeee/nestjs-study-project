@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import Usuario from './usuario.entity';
 import { UsuarioRepository } from './usuario.repository';
 
@@ -10,5 +10,21 @@ export class UsuarioController {
   async criar(@Body() usuario: Usuario) {
     const novoUsuario = await this.usuarioRepository.create(usuario);
     return novoUsuario;
+  }
+
+  @Get()
+  async listarUsuarios() {
+    const usuarios = await this.usuarioRepository.getAll();
+    return usuarios;
+  }
+
+  @Get(':id')
+  async obterUsuarioPorId(@Param('id') id: string) {
+    try {
+      const usuario = await this.usuarioRepository.findById(+id);
+      return usuario;
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
