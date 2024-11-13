@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import Usuario from './usuario.entity';
 import { UsuarioRepository } from './usuario.repository';
 
@@ -23,6 +23,15 @@ export class UsuarioController {
     try {
       const usuario = await this.usuarioRepository.findById(+id);
       return usuario;
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  @Delete(':id')
+  async deletar(@Param('id') id: number) {
+    try {
+      await this.usuarioRepository.delete(+id);
     } catch (err) {
       console.error(err);
     }

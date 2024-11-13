@@ -17,3 +17,6 @@ content-type: {{contentType}}
     "email": "teste@root.com",
     "senha": "root@root"
 }
+
+###
+DELETE http://{{host}}/usuario/4
