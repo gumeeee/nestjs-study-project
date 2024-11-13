@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+} from '@nestjs/common';
 import Usuario from './usuario.entity';
 import { UsuarioRepository } from './usuario.repository';
 
@@ -35,5 +43,14 @@ export class UsuarioController {
     } catch (err) {
       console.error(err);
     }
+  }
+
+  @Patch(':id')
+  async atualizar(@Param('id') id: string, @Body() usuario: Usuario) {
+    const usuarioAtualizado = await this.usuarioRepository.update({
+      id: +id,
+      ...usuario,
+    });
+    return usuarioAtualizado;
   }
 }
