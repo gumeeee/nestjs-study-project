@@ -1,9 +1,19 @@
+@hostname = localhost
+@port = 3000
+@host = {{hostname}}:{{port}}
+@contentType = application/json
+
+GET http://{{host}}/usuario 
+
 ###
-POST http://localhost:3000/usuario
-content-type: application/json
+GET http://{{host}}/usuario/2
+
+###
+POST http://{{host}}/usuario
+content-type: {{contentType}}
 
 {
-    "nome": "Guilherme Moura",
-    "email": "guilherme@email.com",
-    "senha": "@senhateste"
+    "nome": "Usuario Teste",
+    "email": "teste@root.com",
+    "senha": "root@root"
 }
