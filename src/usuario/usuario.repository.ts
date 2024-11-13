@@ -35,4 +35,16 @@ export class UsuarioRepository {
       data: usuario as any,
     });
   }
+
+  async delete(id: number) {
+    if (!id) {
+      throw new Error('Usuário não encontrado...');
+    }
+
+    return this.prismaService.usuario.delete({
+      where: {
+        id,
+      },
+    });
+  }
 }
