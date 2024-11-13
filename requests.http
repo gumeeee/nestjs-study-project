@@ -20,3 +20,13 @@ content-type: {{contentType}}
 
 ###
 DELETE http://{{host}}/usuario/4
+
+###
+PATCH http://{{host}}/usuario/5
+content-type: {{contentType}}
+
+{
+    "nome": "Usuario Administrador",
+    "email": "teste@admin.com",
+    "senha": "root@admin"
+}
